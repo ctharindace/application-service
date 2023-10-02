@@ -2,10 +2,12 @@ package com.chethiya.application.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class ApplicantDTO {
+public class ApplicationDTO implements Serializable {
+
     private String firstName;
 
     private String lastName;
@@ -27,5 +29,6 @@ public class ApplicantDTO {
     private String complexion;
 
     private String eduQualificationGrade;
+
 
 }
