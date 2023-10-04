@@ -28,4 +28,6 @@ public class ApplicantDTO {
 
     private String eduQualificationGrade;
 
+    private String port;
+
 }

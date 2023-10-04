@@ -1,6 +1,6 @@
 package com.chethiya.application.services.impl;
 
-import com.chethiya.application.client.ApplicantClient;
+import com.chethiya.application.client.ApplicantProxyClient;
 import com.chethiya.application.dao.couchbase.repositories.ApplicationRepository;
 import com.chethiya.application.dto.ApplicantDTO;
 import com.chethiya.application.dto.ApplicationDTO;
@@ -17,13 +17,18 @@ public class ApplicationServiceImpl implements ApplicationService {
     private ApplicationRepository applicationRepository;
 
     @Autowired
-    private ApplicantClient applicantClient;
+    private ApplicantProxyClient applicantClient;
 
     @Override
     public ApplicationDTO createApplication(ApplicationRQ applicationRQ) {
-        ApplicantDTO applicantDTO = applicantClient.getApplicant(applicationRQ.getNic());
+        ApplicantDTO applicantDTO = applicantClient.get(applicationRQ.getNic());
         Application application = applicationRepository.save(getApplication(applicantDTO));
         return getApplicantDTO(application);
+    }
+
+    @Override
+    public ApplicantDTO getApplicant(String nic) {
+        return applicantClient.get(nic);
     }
 
     @Override
@@ -63,6 +68,7 @@ public class ApplicationServiceImpl implements ApplicationService {
             applicationDTO.setHeight(application.getHeight());
             applicationDTO.setComplexion(application.getComplexion());
             applicationDTO.setEduQualificationGrade(application.getEduQualificationGrade());
+
         }
         return applicationDTO;
     }
