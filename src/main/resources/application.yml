@@ -1,0 +1,23 @@
+app:
+    chethiya:
+        couchbase:
+            bucketname: application-bucket
+            connection:
+                string: couchbase://127.0.0.1
+            password: 1s@secret
+            username: app_user
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka
+server:
+    port: 8580
+spring:
+    application:
+        name: application-service
+    cloud:
+        config:
+            server:
+                enabled: false
+    config:
+        import: optional:configserver:http://localhost:8888/
