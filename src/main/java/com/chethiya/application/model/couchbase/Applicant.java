@@ -1,13 +1,14 @@
-package com.chethiya.application.dto;
+package com.chethiya.application.model.couchbase;
 
 import lombok.Data;
+import org.springframework.util.CollectionUtils;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
-public class ApplicantDTO implements Serializable {
+public class Applicant {
 
     private String firstName;
 
@@ -31,8 +32,13 @@ public class ApplicantDTO implements Serializable {
 
     private String eduQualificationGrade;
 
-    private Set<PassportDTO> passports;
+    private Set<Passport> passports;
 
     private String port;
-
+    public void addPassport(Passport passport) {
+        if (CollectionUtils.isEmpty(this.passports)) {
+            passports = new HashSet<>();
+        }
+        passports.add(passport);
+    }
 }

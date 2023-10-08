@@ -1,13 +1,12 @@
-package com.chethiya.application.dto;
+package com.chethiya.application.model.couchbase;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class PositionDTO implements Serializable {
+public class Position {
 
     private String referenceId;
 

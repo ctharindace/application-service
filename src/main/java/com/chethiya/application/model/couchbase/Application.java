@@ -5,32 +5,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 import org.springframework.data.couchbase.core.mapping.Field;
 
-import java.util.Date;
-
 @Data
 @Document
 public class Application {
     @Id
-    private String nic;
+    private String applicationId;
+
     @Field
-    private String firstName;
+    private Applicant applicant;
+
     @Field
-    private String lastName;
-    @Field
-    private String gender;
-    @Field
-    private Date dateOfBirth;
-    @Field
-    private String maritalStatus;
-    @Field
-    private Integer noOfChildren;
-    @Field
-    private Double weight;
-    @Field
-    private Double height;
-    @Field
-    private String complexion;
-    @Field
-    private String eduQualificationGrade;
+    private Position position;
 
 }

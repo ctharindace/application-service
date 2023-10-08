@@ -9,6 +9,6 @@ public class ApplicationRQ implements Serializable {
 
     private String nic;
 
-    private String positionCode;
+    private String positionRefId;
 
 }
