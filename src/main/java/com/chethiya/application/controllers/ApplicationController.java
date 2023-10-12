@@ -3,8 +3,8 @@ package com.chethiya.application.controllers;
 import com.chethiya.application.dto.ApplicantDTO;
 import com.chethiya.application.dto.ApplicationDTO;
 import com.chethiya.application.dto.ApplicationRQ;
+import com.chethiya.application.model.couchbase.Application;
 import com.chethiya.application.services.ApplicationService;
-import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -31,10 +31,15 @@ public class ApplicationController {
 
     @ResponseBody
     @GetMapping(path = "/applicant/get/{nic}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    @Retry(name = "get-applicant", fallbackMethod = "getDefaultApplicant")
-    public ApplicantDTO add(@PathVariable String nic) {
+    public ApplicantDTO getApplicant(@PathVariable String nic) {
         log.info("Calling get applicant method");
         return applicationService.getApplicant(nic);
+    }
+
+    @ResponseBody
+    @GetMapping(path = "/get/{nic}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Application get(@PathVariable String nic) {
+        return applicationService.getApplication(nic);
     }
 
 }

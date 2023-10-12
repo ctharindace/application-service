@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "position-service")
 public interface PositionProxyClient {
 
-    @GetMapping(path = "/get/{code}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(path = "/position/get/{code}", produces = {MediaType.APPLICATION_JSON_VALUE})
     PositionDTO get(@PathVariable(name = "code") String code);
 
 }

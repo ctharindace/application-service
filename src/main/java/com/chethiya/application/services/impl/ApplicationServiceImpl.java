@@ -45,6 +45,11 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
+    public Application getApplication(String nic){
+        return applicationRepository.findByApplicationId(nic);
+    }
+
+    @Override
     public ApplicationDTO saveEntity(ApplicationDTO applicationDTO) {
         Application application = applicationRepository.save(getApplication(applicationDTO.getApplicantDTO(),
                 applicationDTO.getPositionDTO()));
