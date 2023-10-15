@@ -1,6 +1,8 @@
 package com.chethiya.application.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
 import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepositories;
 
@@ -9,24 +11,26 @@ import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepos
 @EnableCouchbaseRepositories(basePackages = {"com.chethiya.application.dao.couchbase.repositories"})
 public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
+    @Autowired
+    ConfigurableEnvironment env;
+
+    @Override
+    public String getBucketName() {
+        return env.getProperty("spring.couchbase.bucket-name");
+    }
+
     @Override
     public String getConnectionString() {
-        return "couchbase://127.0.0.1";
+        return env.getProperty("spring.couchbase.connection-string");
     }
 
     @Override
     public String getUserName() {
-        return "app_user";
+        return env.getProperty("spring.couchbase.user-name");
     }
 
     @Override
     public String getPassword() {
-        return "1s@secret";
+        return env.getProperty("spring.couchbase.password");
     }
-
-    @Override
-    public String getBucketName() {
-        return "application-bucket";
-    }
-
 }

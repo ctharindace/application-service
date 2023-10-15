@@ -24,7 +24,7 @@ spring:
     cloud:
         config:
             server:
-                enabled: false
+                enabled: true
     config:
         import: optional:configserver:http://localhost:8888/
 management:
