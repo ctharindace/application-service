@@ -3,13 +3,15 @@ app:
         couchbase:
             bucketname: application-bucket
             connection:
-                string: couchbase://127.0.0.1
+                string: couchbase://couchbase
             password: 1s@secret
             username: app_user
 eureka:
     client:
         serviceUrl:
-            defaultZone: http://localhost:8761/eureka
+            defaultZone: http://naming-server:8761/eureka
+    instance:
+        preferIpAddress: true
 resilience4j:
     retry:
         instances:
@@ -26,7 +28,7 @@ spring:
             server:
                 enabled: true
     config:
-        import: optional:configserver:http://localhost:8888/
+        import: optional:configserver:http://config-server:8888/
 management:
     tracing:
         sampling:
